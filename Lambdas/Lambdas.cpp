@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <functional>
+#include <numeric>
 
 /*
 	Lambdas are not function, they are a special kind of object called a functor.
@@ -77,6 +78,21 @@ int main()
 	v.resize(std::distance(v.begin(), u));
 	printVector(v);
 
+
+	// lambda factorial
+	std::vector<int> vec{ 1,2,3,4,5,6,7,8,9,10 };
+	int total = std::accumulate(vec.begin(), vec.end(), 1, [](int i, int j)
+		{
+			return i * j;
+		});
+	std::cout << "10! =\t" << total << "\n\n";
+
+	// Access function through variable
+	auto square = [](int i)
+	{
+		return i * i;
+	};
+	std::cout << "Squaare of 7 is: \t" << square(7) << "\n\n";
 
 	return 0;
 }
